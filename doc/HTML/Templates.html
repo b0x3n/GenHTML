@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>GenHTML - Templates</title>
+  <link rel="Stylesheet" type="text/css" href="css/main.css">
+ </head>
+ <body>
+ <div id="page-wrapper">  <div class="page-header">
+GenHTML
+  </div>  <div class="section-top">
+   <div class="section-left">
+<a href="Input-file-structure.html">Input file structure</a>
+   </div>
+   <div class="section-center">
+<a href="index.html">GenHTML</a>
+   </div>
+   <div class="section-right">
+<a href="Example.html">Example</a>
+   </div>
+  </div>   <ol>
+   <li><a href="Templates.html">Templates</a></li>
+    <li class="empty-li">
+    <ol>
+    <li><a href="Templates.html#_CSS_Template_file">CSS Template file</a></li>
+    <li><a href="Templates.html#_HTML_Templates">HTML Templates</a></li>
+     <li class="empty-li">
+     <ol>
+     <li><a href="Templates.html#__Page_open">Page open</a></li>
+     <li><a href="Templates.html#__Page_header">Page header</a></li>
+     <li><a href="Templates.html#__Page_section">Page section</a></li>
+     <li><a href="Templates.html#__Page_footer">Page footer</a></li>
+     <li><a href="Templates.html#__Page_close">Page close</a></li>
+     <li><a href="Templates.html#__Section_top">Section top</a></li>
+     <li><a href="Templates.html#__Section_header">Section header</a></li>
+     <li><a href="Templates.html#__Section_subheader">Section subheader</a></li>
+     <li><a href="Templates.html#__Section_paragraph">Section paragraph</a></li>
+     <li><a href="Templates.html#__Section_codeblock">Section codeblock</a></li>
+     <li><a href="Templates.html#__Section_bottom">Section bottom</a></li>
+    </ol>
+   </li>
+   </ol>
+   </li>
+   </ol>
+  <div class="page-section">
+   <h1><a name="Templates">Templates</a></h1>
+    <p>
+There are two main templates - HML and CSS.
+    </p>    <p>
+The CSS template isn't really a template, it's just a .css file - HTML templates can be either a single file or multiple files.
+    </p>    <p>
+If you are curious - GenHTML will use default files if none are specified at the command line, these can be found in:
+    </p>    <pre>
+
+   GenHTML/Templates/CSS
+   GenHTML/Templates/HTML
+    </pre>    <p>
+If you want to work with customised templates, you can make copies of the defaults and edit them, then use the --html-path and --css-path options at the command line to point GenHTML at those files.
+    </p>    <h2><a name="_CSS_Template_file">CSS Template file</a></h2>    <p>
+When GenHTML builds the HTML it will create the output path directory if it does not exist. Within the output path directory it will also create a css directory if it does not exist.
+    </p>    <p>
+Here it will copy the .css file to be included by the HTML documents.
+    </p>    <p>
+This file should be named main.css, we can change this if necessary, but by default GenHTML will create HTML documents that expect to find main.css in the css/ directory.
+    </p>    <p>
+For more information on the elements and classes the .css file should define, see the default GenHTML/Templates/CSS/main.css file, which is fairly well commented.
+    </p>    <h2><a name="_HTML_Templates">HTML Templates</a></h2>    <p>
+GenHTML uses a bunch of HTML templates to create the HTML elements and build the documents.
+    </p>    <p>
+If you look in GenHTML/Templates/HTML/ you will see the following files:
+    </p>    <pre>
+
+    index
+    page-close
+    page-footer
+    page-header
+    page-open
+    page-section
+    section-bottom
+    section-codeblock
+    section-header
+    section-paragraph
+    section-subheader
+    section-top
+    </pre>    <p>
+The index file contains all of the templates in a single file, the other files contain the individual templates.
+    </p>    <p>
+GenHTML allows you to specify either a file that contains all of the HTML templates, or specify a location where the individual template files are found. By default, the --html-path option is set to:
+    </p>    <pre>
+
+    GenHTML/Templates/HTML/
+    </pre>    <p>
+Which means GenHTML will load the individual HTML template files, not the index containing all of the templates.
+    </p>    <p>
+If you look in index you will see, for example:
+    </p>    <pre>
+
+    PAGE_HEADER
+    </pre>    <p>
+Followed by some HTML.
+    </p>    <p>
+PAGE_HEADER is the template directive name, if you look in:
+    </p>    <pre>
+
+    GenHTML/Templates/HTML/page-header
+    </pre>    <p>
+You will see it's the exact same template, if we cs into the GenHTML directory and do:
+    </p>    <pre>
+
+    php GenHTML --css-path Templates/HTML/index
+    </pre>    <p>
+Then we force GenHTML to load the templates from the index instead of individual files.
+    </p>    <p>
+The templates contain {{identifiers}} that are placeholders for specific types of data extracted from the input files.
+    </p>    <h2><a name="__Page_open">Page open</a></h2>    <p>
+Index directive PAGE_OPEN or file page-open.
+    </p>    <p>
+This is the main HTML header of the page, it should include the HTML opening tags and the head section - it is also where we can change the name of the .css file to something other than main.css if we want to.
+    </p>    <p>
+Directives expanded here are PAGE_LANGUAGE which will expand to the --html-language option (en by default) and PAGE_TITLE which will expand to the name of the current page being viewed.
+    </p>    <h2><a name="__Page_header">Page header</a></h2>    <p>
+Directive PAGE_HEADER or file page-header.
+    </p>    <p>
+This goes at the top of every individual HTML file created.
+    </p>    <p>
+Only one directive is expanded here, the PAGE_TITLE - note that the PAGE_TITLE is the content of the main header of the main index/input file.
+    </p>    <h2><a name="__Page_section">Page section</a></h2>    <p>
+Directive PAGE_SECTION or file page-section.
+    </p>    <p>
+This is a container or wrapper element used for each individual page, it is essentially the parent section.
+    </p>    <p>
+Expands the PAGE_SECTION directive - this is the internally compiled page - there is no real need or reason to alter this template.
+    </p>    <h2><a name="__Page_footer">Page footer</a></h2>    <p>
+Directive PAGE_FOOTER or file page-footer.
+    </p>    <p>
+Nothing is expanded in this section, it is intended for general purpose use, copyright info, maybe contact info.
+    </p>    <p>
+You can alter the template to include whatever information you require.
+    </p>    <p>
+Also note how the template elements reference some id's and classes from the .css file.
+    </p>    <p>
+Between the .css file and the templates, changing the layout and look of the output HTML files is fairly trivial.
+    </p>    <h2><a name="__Page_close">Page close</a></h2>    <p>
+Directive PAGE_CLOSE or file page-close.
+    </p>    <p>
+Nothing is expanded in this template.
+    </p>    <p>
+This is used to close each ndividual HTML page, it's just the standard body and html closing tags.
+    </p>    <h2><a name="__Section_top">Section top</a></h2>    <p>
+Directive SECTION_TOP or file section-top.
+    </p>    <p>
+When GenHTML creates a multi-page document, it will add quick navigation links to the top of each document linking to the next and previous documents.
+    </p>    <p>
+The following directives are expanded, linking to other pages:
+    </p>    <pre>
+
+     PAGE_PREV      Previous page (if one exists)
+     PAGE_INDEX     Main index page
+     PAGE_NEXT      Next page (if one exists)
+    </pre>    <p>
+GenHTML will only show the links that are relevant, for example it won't generate a link to the main index page in the main index page.
+    </p>    <p>
+Again, there's little to change or alter, here. Customisation should be done in the .css file.
+    </p>    <h2><a name="__Section_header">Section header</a></h2>    <p>
+Directive SECTION_HEADER or file section-header.
+    </p>    <p>
+This is the element used to wrap the main header of each page, it's basically a h1 tag with an anchor tag embedded for linking the pages and sections.
+    </p>    <p>
+Expands two directives, SECTION_NAME and SECTION_HEADER.
+    </p>    <p>
+SECTION_NAME expands to an internal name that is created as an anchor point for linking.
+    </p>    <p>
+SECTION_HEADER expands to the actual header extraced from the input document.
+    </p>    <h2><a name="__Section_subheader">Section subheader</a></h2>    <p>
+Directive SECTION_SUBHEADER or file section-subheader.
+    </p>    <p>
+Similar to the SECTION_HEADER, it expands the exact same directives to generate the subheader and anchor for linking.
+    </p>    <h2><a name="__Section_paragraph">Section paragraph</a></h2>    <p>
+Directive SECTION_PARAGRAPH or file section-paragraph.
+    </p>    <p>
+Expands the SECTION_PARAGRAPH directive which translates to the individual paragraphs read from the input files.
+    </p>    <p>
+Again, customisation should be done via the .css file.
+    </p>    <h2><a name="__Section_codeblock">Section codeblock</a></h2>    <p>
+Directive SECTION_CODEBLOCK or file section-codeblock.
+    </p>    <p>
+Expands the SECTION_CODEBLOCK directive which translates t the individual pre code blocks read from the input files.
+    </p>    <h2><a name="__Section_bottom">Section bottom</a></h2>    <p>
+Directive SECTION_BOTTOM or file section-bottom.
+    </p>    <p>
+Similar to the SECTION_TOP template, this will show links at the foot of the page in a multi- multi-page document.
+    </p>    <p>
+Expands 3 directives:
+    </p>    <pre>
+
+     PAGE_PREV      Previous page (if one exists)
+     PAGE_TOP       Top of the current page
+     PAGE_NEXT      Next page (if one exists)
+    </pre>    <p>
+Again, GenHTML will be sure not to include links to pages that do not exist or the current page.
+    </p>
+  </div>  <div class="section-bottom">
+   <div class="section-left">
+<a href="Input-file-structure.html">Input file structure</a>
+   </div>
+   <div class="section-center">
+<a href="#top">Top</a>
+   </div>
+   <div class="section-right">
+<a href="Example.html">Example</a>
+   </div>
+  </div>  <div class="page-footer">
+    &copy; 2019
+  </div> </div>
+ </body>
+</html>

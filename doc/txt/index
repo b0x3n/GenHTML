@@ -1,0 +1,95 @@
+GenHTML
+
+ GenHTML is an application that allows you to
+ quickly generate HTML documentation from raw
+ text files.
+
+ 
+ Purpose
+
+  Writing documentation can be a tedious and
+  slow process, particularly if you're using
+  some kind of markup language like HTML.
+
+  The idea is that we can write our documents
+  as raw text files with little to no formatting.
+
+  We write regular, readable and presentable raw
+  text documentation that we ship with our
+  software and then run that through GenHTML
+  to translate it to HTML automatically.
+
+  This means we write documentation once, and
+  once only - with no editing of the raw text,
+  no markup or markdown.
+
+
+ How it works
+
+  Very simply, GenHTML uses indentation to
+  determine what is what in the input files.
+
+  Documentation doesn't require anything too
+  fancy, a few simply HTML elements are enough.
+
+  If you want an example - see:
+
+    GenHTML/doc/txt/
+
+  And:
+
+    GenHTML/doc/HTML/
+
+  The text documents in txt/ were used to build
+  the documents in the HTML/ directory. You can
+  see from the layout of the text documents that
+  they're perfectly readable as they are, with
+  no additional formatting, just indentation.
+
+  You could, if you wanted to - run those text
+  documents through GenHTML and re-build the
+  HTML documentation:
+
+    php GenHTML --i GenHTML/txt/index --o doc -m
+
+  The above command will build the raw text
+  files in GenHTML/txt/index into a set of HTML
+  documents in the directory named "doc".
+
+  If you want a list of available options:
+
+    php GenHTML --help
+
+  Or help with a particular option:
+
+    php GenHTML --help option_name
+
+  For example:
+
+    php GenHTML --help --input-path
+
+  To get help for the --input-path option.
+
+ 
+ Additional
+
+  GenHTML was written in php for one reason,
+  personal use - to save me time.
+
+  It was written in php and this is version 1,
+  thus, it's rather...hacky!
+
+  I may re-factor and release another iteration
+  or go on to do version 2 in c - but for now it
+  is fairly limited and I have some ideas for
+  extending and improving the application in the
+  future.
+
+  If you want to contribute, make suggestions,
+  criticise or report issues you can email me
+  at heathenjessie@gmail.com.
+
+   Running GenHTML
+   Input file structure
+   Templates
+   Example

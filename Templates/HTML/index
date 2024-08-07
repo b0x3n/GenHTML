@@ -1,0 +1,71 @@
+PAGE_OPEN
+<!DOCTYPE html>
+<html lang="{{PAGE_LANGUAGE}}">
+ <head>
+  <title>{{PAGE_TITLE}}</title>
+  <link rel="Stylesheet" type="text/css" href="css/main.css">
+ </head>
+ <body>
+ <div id="page-wrapper">
+
+PAGE_HEADER
+  <div class="page-header">
+{{PAGE_TITLE}}
+  </div>
+
+PAGE_SECTION
+  <div class="page-section">
+{{PAGE_SECTION}}
+  </div>
+
+PAGE_FOOTER
+  <div class="page-footer">
+    &copy; 2019
+  </div>
+
+PAGE_CLOSE
+ </div>
+ </body>
+</html>
+
+SECTION_TOP
+  <div class="section-top">
+   <div class="section-left">
+{{PAGE_PREV}}
+   </div>
+   <div class="section-center">
+{{PAGE_INDEX}}
+   </div>
+   <div class="section-right">
+{{PAGE_NEXT}}
+   </div>
+  </div>
+
+SECTION_HEADER
+   <h1><a name="{{SECTION_NAME}}">{{SECTION_HEADER}}</a></h1>
+
+SECTION_SUBHEADER
+    <h2><a name="{{SECTION_NAME}}">{{SECTION_SUBHEADER}}</a></h2>
+
+SECTION_PARAGRAPH
+    <p>
+{{SECTION_PARAGRAPH}}
+    </p>
+
+SECTION_CODEBLOCK
+    <pre>
+{{SECTION_CODEBLOCK}}
+    </pre>
+
+SECTION_BOTTOM
+  <div class="section-bottom">
+   <div class="section-left">
+{{PAGE_PREV}}
+   </div>
+   <div class="section-center">
+{{PAGE_TOP}}
+   </div>
+   <div class="section-right">
+{{PAGE_NEXT}}
+   </div>
+  </div>

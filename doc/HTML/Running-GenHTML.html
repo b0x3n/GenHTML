@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>GenHTML - Running-GenHTML</title>
+  <link rel="Stylesheet" type="text/css" href="css/main.css">
+ </head>
+ <body>
+ <div id="page-wrapper">  <div class="page-header">
+GenHTML
+  </div>  <div class="section-top">
+   <div class="section-left">
+<a href="index.html">GenHTML</a>
+   </div>
+   <div class="section-center">
+&nbsp;
+   </div>
+   <div class="section-right">
+<a href="Input-file-structure.html">Input file structure</a>
+   </div>
+  </div>   <ol>
+   <li><a href="Running-GenHTML.html">Running GenHTML</a></li>
+    <li class="empty-li">
+    <ol>
+    <li><a href="Running-GenHTML.html#_Command_line_options">Command line options</a></li>
+    <li><a href="Running-GenHTML.html#_Options">Options</a></li>
+     <li class="empty-li">
+     <ol>
+     <li><a href="Running-GenHTML.html#__--Index-path">--Index-path</a></li>
+     <li><a href="Running-GenHTML.html#__--output-path">--output-path</a></li>
+     <li><a href="Running-GenHTML.html#__--html-path">--html-path</a></li>
+     <li><a href="Running-GenHTML.html#__--css-path">--css-path</a></li>
+     <li><a href="Running-GenHTML.html#__--html-language">--html-language</a></li>
+     <li><a href="Running-GenHTML.html#__--link-depth">--link-depth</a></li>
+     <li><a href="Running-GenHTML.html#__--help">--help</a></li>
+     <li><a href="Running-GenHTML.html#__-multi-page">-multi-page</a></li>
+     <li><a href="Running-GenHTML.html#__-silent">-silent</a></li>
+    </ol>
+   </li>
+   </ol>
+   </li>
+   </ol>
+  <div class="page-section">
+   <h1><a name="Running_GenHTML">Running GenHTML</a></h1>
+    <p>
+Since GenHTML is written in php, we need to run it with the php interpreter:
+    </p>    <pre>
+
+   php GenHTML [--option <paramter>] [-switch]
+    </pre>    <p>
+You can run GenHTML without any parameters, but in most cases you will need to supply some parameters to customise the build.
+    </p>    <h2><a name="_Command_line_options">Command line options</a></h2>    <p>
+There are two types of option. Options that are prefixed with - are switches, they do not require a parameter and are used to enable or disable a particular feature.
+    </p>    <p>
+For example, the -silent switch tells GenHTML to suppress standard output:
+    </p>    <pre>
+
+    php GenHTML -silent
+    </pre>    <p>
+Options that do require a parameter begin with the -- prefix require a paramter, example:
+    </p>    <pre>
+
+    php GenHTML --output-path output_html
+    </pre>    <p>
+You can view a list of available options using the --help option at the command line:
+    </p>    <pre>
+
+    php GenHTML --help
+    </pre>    <p>
+Or to get help on a specific option:
+    </p>    <pre>
+
+    php GenHTML --help --input-path
+    </pre>    <p>
+All options, if unspecified at the command line, will fall back on default values, described below.
+    </p>    <h2><a name="_Options">Options</a></h2>    <p>
+If you dump all options you will see that there are long and short versions of each, one more readable and one quicker to type, for example:
+    </p>    <pre>
+
+    --input-path
+    </pre>    <p>
+And:
+    </p>    <pre>
+
+    --i
+    </pre>    <p>
+Do the same thing. Here is a full list of all available options:
+    </p>    <p>
+Here is a list of all options and switches:
+    </p>    <pre>
+
+    Long              Short   Description
+
+     --index-path      --i     Specify the index path directory
+     --output-path     --o     Specify the output path directory
+     --html-path       --h     Specify the HTML template location
+     --css-path        --c     Specify the CSS template location
+     --language        --l     Specify the HTML language
+     --link-depth      --d     Specify the link/section depth
+     --help            --H     Get help using GenHTML
+     -multi-page       -m      Build a multi-file HTML document
+     -silent           -s      Suppress output (except errors)
+    </pre>    <p>
+Here is a brief descriptions of each:
+    </p>    <h2><a name="__--Index-path">--Index-path</a></h2>    <p>
+GenHTML requires a single input file, this is the main index text file which may contain an index of other input files to be included.
+    </p>    <p>
+By default, GenHTML will look in the current working directory for a file named index, or we can specify a particular file using the --index-path or shorter --i option:
+    </p>    <pre>
+
+     php GenHTML --input-path txt/index
+    </pre>    <p>
+In this case, GenHTML will expect to find the main index file in the directory named txt.
+    </p>    <p>
+This also changes the current working path, if the index includes a list of external input files then the paths are relative to txt and not the current working directory.
+    </p>    <h2><a name="__--output-path">--output-path</a></h2>    <p>
+The --output-path or shorter --o options are used to specify an output path, this is where the output HTML and CSS files are written.
+    </p>    <pre>
+
+     php GenHTML --output-path docs
+    </pre>    <p>
+Tells GenHTML to write the output files to a directory called docs. If the directory does not exist it will be created.
+    </p>    <p>
+By default, the GenHTML application will write to a directory named html if no output path is specified at the command line.
+    </p>    <h2><a name="__--html-path">--html-path</a></h2>    <p>
+GenHTML uses a set of pre-defined templates to build HTML documents. By default, GenHTML will use its own set of templates if none are specified at the command line. These are found in:
+    </p>    <pre>
+
+     GenHTML/Templates/HTML/
+    </pre>    <p>
+Or we can specify a custom template set:
+    </p>    <pre>
+
+     php GenHTML --html-path my_templates
+    </pre>    <p>
+There are two ways we can supply templates, in individual files or a single file format.
+    </p>    <p>
+GenHTML will determine this automatically.
+    </p>    <h2><a name="__--css-path">--css-path</a></h2>    <p>
+GenHTML requires a CSS file to build the HTML pages.
+    </p>    <p>
+If no CSS file is specified at the command line then GenHTML will use the default file:
+    </p>    <pre>
+
+     GenHTML/Templates/CSS/main.css
+    </pre>    <p>
+If you want to use a custom CSS file, you can specify it at the command line using either the --css-path or --c options:
+    </p>    <pre>
+
+     php GenHTML --css-path main.css
+    </pre>    <p>
+The file must be named main.css, or you will have to go into the HTML or edit the template to make the necessary changes.
+    </p>    <h2><a name="__--html-language">--html-language</a></h2>    <p>
+The HTML language is set to en (English) by default.
+    </p>    <p>
+This is inserted into the document <html> tag.
+    </p>    <p>
+If you need to change this, you can use the --html-language or shorter --l options:
+    </p>    <pre>
+
+     php GenHTML --html-language ru
+    </pre>    <p>
+This assumes that the PAGE_TOP template has not been altered or includes the {{PAGE_TOP}} directive.
+    </p>    <h2><a name="__--link-depth">--link-depth</a></h2>    <p>
+The --link-depth and shorter --d options are used to specify the detph of the navigation lines and sections.
+    </p>    <p>
+By default this is set to 3, which means that links will be built to a depth of 3. We can set it to either 1, 2 or 3:
+    </p>    <pre>
+
+     php GenHTML --link-depth 1
+    </pre>    <p>
+In this case, GenHTML will only generate links for pages, but not sub-sections within those pages.
+    </p>    <h2><a name="__--help">--help</a></h2>    <p>
+The --help option is used to get information about the available GenHTML command line options.
+    </p>    <p>
+If we use the --help or the shorter --H options without a parameter, we will get a list of all available options and some other information:
+    </p>    <pre>
+
+     php GenHTML --help
+    </pre>    <p>
+If we want help using a particular option, we must specify that option as a parameter to the --help option:
+    </p>    <pre>
+
+     php GenHTML --help --input-path
+    </pre>    <p>
+For example, will display information about the --input-path or --i options.
+    </p>    <h2><a name="__-multi-page">-multi-page</a></h2>    <p>
+By default the GenHTML application will create a single page HTML document - all of the input files will be compiled into a single page and the pages and sections linked internally.
+    </p>    <p>
+If we want to create a multi-page document, we use the -multi-page or shorter -m switches:
+    </p>    <pre>
+
+     php GenHTML -m
+    </pre>    <p>
+This means that, for each input file a single HTML document will be created, and that each of the documents will be linked externally.
+    </p>    <h2><a name="__-silent">-silent</a></h2>    <p>
+By default, GenHTML will dump a lot of data to the terminal describing the build.
+    </p>    <p>
+This output can be suppressed using either the -silent or the shorter -s switches:
+    </p>    <pre>
+
+     php GenHTML --silent
+    </pre>    <p>
+This will, of course - not prevent GenHTML from displaying error messages should any issues occur with the build.
+    </p>
+  </div>  <div class="section-bottom">
+   <div class="section-left">
+<a href="index.html">GenHTML</a>
+   </div>
+   <div class="section-center">
+<a href="#top">Top</a>
+   </div>
+   <div class="section-right">
+<a href="Input-file-structure.html">Input file structure</a>
+   </div>
+  </div>  <div class="page-footer">
+    &copy; 2019
+  </div> </div>
+ </body>
+</html>

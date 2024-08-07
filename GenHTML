@@ -1,0 +1,106 @@
+<?php
+
+
+/8---------------------------------------------------------
+ |
+ |  GenHTML
+ |
+ |  Not much going on here, a few __core() functions are
+ |  defined before the app/boot/startup.php script is
+ |  included and the startup() function is run.
+ |
+ */
+
+
+//  Quickly define a value if not defined.
+//
+function __defifndef($name, $value)
+    {
+        if (! defined($name))
+            define($name, $value);
+    }
+
+
+    __defifndef('PATH_ROOT', __DIR__);
+    __defifndef('PATH_CURRENT', getcwd());
+    __defifndef('PATH_SEP', DIRECTORY_SEPARATOR);
+
+
+//  Quickly build a path from an array of string
+//  elements, ensuring a single PATH_SEP is inserted
+//  between each string.
+//
+function __buildpath($path_array)
+    {
+        $_path = false;
+
+        foreach ($path_array as $path) {
+            if ($_path === false) $_path = $path;
+            else $_path .= PATH_SEP . $path;
+        }
+
+        return $_path;
+    }
+
+
+    __defifndef('PATH_CORE', __buildpath(Array(
+        PATH_ROOT, "app", "core"
+    )));
+
+
+//  Load core scripts from the PATH_CORE directory.
+//
+function __loadcore($script_name)
+    {
+        $_path = __buildpath(Array(PATH_CORE, $script_name));
+
+        if (! is_file($_path))
+            die("__loadcore(): Cannot find core script " . $_path);
+
+        include($_path);
+    }
+
+
+    __defifndef('PATH_CLASSES', __buildpath(Array(
+        PATH_ROOT, "app", "classes"
+    )));
+
+
+//  Loads class scripts from the PATH_CLASSES
+//  directory - this function will be registered with
+//  spl_autoload_register().
+//
+function __loadclass($class_name)
+    {
+        chdir(PATH_ROOT);
+
+        $_class_name = str_replace('\\', PATH_SEP, $class_name);
+
+        $_path = __buildpath(Array(
+            $_class_name . ".php"
+        ));
+
+        require($_path);
+    }
+
+
+    spl_autoload_register('__loadclass');
+
+
+//  Finally, run th startup script in PATH_STARTUP,
+//  this will initialise and run the controller, 
+//  and return any error or false on success.
+//
+    __defifndef('PATH_STARTUP', __buildpath(Array(
+        PATH_ROOT, "app", "boot", "startup.php"
+    )));
+
+    include(PATH_STARTUP);
+
+    if (($_error_message = startup($argv)) !== false)
+        die($_error_message . "\n");
+
+
+    exit(0);
+
+    

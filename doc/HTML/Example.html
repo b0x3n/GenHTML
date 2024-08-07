@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>GenHTML - Example</title>
+  <link rel="Stylesheet" type="text/css" href="css/main.css">
+ </head>
+ <body>
+ <div id="page-wrapper">  <div class="page-header">
+GenHTML
+  </div>  <div class="section-top">
+   <div class="section-left">
+<a href="Templates.html">Templates</a>
+   </div>
+   <div class="section-center">
+<a href="index.html">GenHTML</a>
+   </div>
+   <div class="section-right">
+&nbsp;
+   </div>
+  </div>   <ol>
+   <li><a href="Example.html">Example</a></li>
+    <li class="empty-li">
+    <ol>
+    <li><a href="Example.html#_Try_it">Try it</a></li>
+   </ol>
+   </li>
+   </ol>
+  <div class="page-section">
+   <h1><a name="Example">Example</a></h1>
+    <p>
+If you want an example, look first at the text files in:
+    </p>    <pre>
+
+   GenHTML/doc/txt/
+    </pre>    <p>
+These are the raw text documents used to build this HTML, no changes or formatting was required in to the raw text documenta.
+    </p>    <h2><a name="_Try_it">Try it</a></h2>    <p>
+If you want, you can try building another copy of this documentation.
+    </p>    <p>
+First, cd to the GenHTML directory:
+    </p>    <pre>
+
+    cd GenHTML
+    </pre>    <p>
+Now, we will build a copy of the documentation in a directory named doc_copy, we will first create a single file version of the HTML:
+    </p>    <pre>
+
+    php GenHTML --i doc/txt/index --o doc_copy
+    </pre>    <p>
+This will create a single index.html file in doc_copy using the default templates.
+    </p>    <p>
+If you want to build it in a multi-page format use the -m switch:
+    </p>    <pre>
+
+    php GenHTML --i doc/txt/index --o doc_copy -m
+    </pre>    <p>
+Play about with options like:
+    </p>    <pre>
+
+    --link-depth 1
+    </pre>    <p>
+And:
+    </p>    <pre>
+
+    --link-depth 2
+    </pre>    <p>
+To see how it affects the navigation sections of each page.
+    </p>
+  </div>  <div class="section-bottom">
+   <div class="section-left">
+<a href="Templates.html">Templates</a>
+   </div>
+   <div class="section-center">
+<a href="#top">Top</a>
+   </div>
+   <div class="section-right">
+&nbsp;
+   </div>
+  </div>  <div class="page-footer">
+    &copy; 2019
+  </div> </div>
+ </body>
+</html>

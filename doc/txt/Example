@@ -1,0 +1,46 @@
+Example
+
+ If you want an example, look first at the text
+ files in:
+
+   GenHTML/doc/txt/
+
+ These are the raw text documents used to build this
+ HTML, no changes or formatting was required in
+ to the raw text documenta.
+
+
+ Try it
+
+  If you want, you can try building another copy
+  of this documentation. 
+
+  First, cd to the GenHTML directory:
+
+    cd GenHTML
+
+  Now, we will build a copy of the documentation
+  in a directory named doc_copy, we will first
+  create a single file version of the HTML:
+
+    php GenHTML --i doc/txt/index --o doc_copy
+
+  This will create a single index.html file in
+  doc_copy using the default templates.
+
+  If you want to build it in a multi-page format
+  use the -m switch:
+
+    php GenHTML --i doc/txt/index --o doc_copy -m
+
+  Play about with options like:
+
+    --link-depth 1
+
+  And:
+
+    --link-depth 2
+
+  To see how it affects the navigation sections
+  of each page.
+

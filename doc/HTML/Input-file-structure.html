@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>GenHTML - Input-file-structure</title>
+  <link rel="Stylesheet" type="text/css" href="css/main.css">
+ </head>
+ <body>
+ <div id="page-wrapper">  <div class="page-header">
+GenHTML
+  </div>  <div class="section-top">
+   <div class="section-left">
+<a href="Running-GenHTML.html">Running GenHTML</a>
+   </div>
+   <div class="section-center">
+<a href="index.html">GenHTML</a>
+   </div>
+   <div class="section-right">
+<a href="Templates.html">Templates</a>
+   </div>
+  </div>   <ol>
+   <li><a href="Input-file-structure.html">Input file structure</a></li>
+    <li class="empty-li">
+    <ol>
+    <li><a href="Input-file-structure.html#_Headers">Headers</a></li>
+    <li><a href="Input-file-structure.html#_Subheaders">Subheaders</a></li>
+    <li><a href="Input-file-structure.html#_Paragraphs">Paragraphs</a></li>
+    <li><a href="Input-file-structure.html#_Pre_blocks">Pre blocks</a></li>
+    <li><a href="Input-file-structure.html#_File_index">File index</a></li>
+    <li><a href="Input-file-structure.html#_Output_files">Output files</a></li>
+   </ol>
+   </li>
+   </ol>
+  <div class="page-section">
+   <h1><a name="Input_file_structure">Input file structure</a></h1>
+    <p>
+Input files are structured using indentation.
+    </p>    <p>
+The level of indentation tells GenHTML what type of element the line data is to be wrapped in.
+    </p>    <p>
+There are 4 main types of element:
+    </p>    <pre>
+
+   Headers
+   Subheaders
+   Paragraphs
+   Pre blocks
+    </pre>    <p>
+Which we can define using relative indentation.
+    </p>    <h2><a name="_Headers">Headers</a></h2>    <p>
+A single input file may only contain a single header - this can be thought of as the main wrapper or page container, everything that follows belongs to the main header in that page.
+    </p>    <p>
+When GenHTML builds the output, headers and subheaders are used to generate links so that pages and sections can be easily navigated.
+    </p>    <p>
+The header always has zero indentation, and everything that belongs to it will have an indentation of 1 or more.
+    </p>    <h2><a name="_Subheaders">Subheaders</a></h2>    <p>
+A subheader allows us to break a page into linkable sections. We can think of these as children to the main page header.
+    </p>    <p>
+It's basically a form of nesting - to create a new subheader all you need to do is make sure it's a single line of text and is indented 1 space more than the container.
+    </p>    <p>
+We can then divide the sub-sections by adding further subheaders - but we can only go two sub-sections deep - example:
+    </p>    <pre>
+
+    |This is the parent header
+    |
+    | This is child header 1
+    |
+    |  This is grandchild header 1.1
+    |
+    |  This is grandchild header 1.2
+    |
+    | This is child header 2
+    |
+    |  This is grandchild header 2.1
+    </pre>    <p>
+I added the | characters to highlight the left edge of the text file and illustrate the level of indentation and why it's important.
+    </p>    <p>
+I've limited GenHTML to this level of depth as it suited my needs, this may change with new versions or iterations.
+    </p>    <h2><a name="_Paragraphs">Paragraphs</a></h2>    <p>
+A paragraph is one or more lines that ends in one of:
+    </p>    <pre>
+
+    .   ,   :   ;   !   ?
+    </pre>    <p>
+Characters.
+    </p>    <p>
+A paragraph will have an indentation of 1 space more than the parent header or subheader it belongs to.
+    </p>    <p>
+Example:
+    </p>    <pre>
+
+    |Section one
+    |
+    | This paragraph belongs to section 1. We can
+    | add as many as we like, but a paragraph may
+    | not contain a blank line,
+    |
+    | This will just result in a new paragraph
+    | being opened.
+    |
+    | 
+    | Sub header one
+    |
+    |  Now this paragraph belongs to Sub header
+    |  one. If we want, we can divide this section
+    |  up like so:
+    |
+    |  Sub header one point one
+    |
+    |   Struggling to think of stuff to type for
+    |   this example, any ideas?
+    </pre>    <p>
+I think you get the idea!
+    </p>    <h2><a name="_Pre_blocks">Pre blocks</a></h2>    <p>
+These are similar to paragraphs, except we can include empty lines.
+    </p>    <p>
+We must also indent the block 3 places more than the containing header:
+    </p>    <pre>
+
+    |A block of pre
+    |
+    | We can use this to output examples of code,
+    | command output, etc:
+    |
+    |   Here is a block of pre text.
+    |
+    |   We can leave blank lines, GenHTML will
+    |   know the pre block is over when we 
+    |   drop the level of indentation.
+    |
+    | Now we're back into a paragraph.
+    </pre>    <p>
+There's a slight issue with this - the first line of the block MUST be indented 3 places more than the header or subheader it belongs to - and all subsequent lines must be at least the same level of indentation.
+    </p>    <p>
+For now it serves my purpose but in future iterations or versions this is likely to be changed.
+    </p>    <h2><a name="_File_index">File index</a></h2>    <p>
+GenHTML expects an index file as its main source of input. This one file may contain any of the elements described above.
+    </p>    <p>
+It can also contain an index of input files to be included in the build, we do this by using an indentation that is 2 spaces greater than the containing header or subheader.
+    </p>    <p>
+For example, if we have a directory named txt that contains our index:
+    </p>    <pre>
+
+    txt/index
+    </pre>    <p>
+Then we can do:
+    </p>    <pre>
+
+    php GenHTML --i txt/index --o doc
+    </pre>    <p>
+Firstly, this will tell GenHTML that to load the index and that all of the input files should be referenced relative to the txt/ directory.
+    </p>    <p>
+Now, we can write our index something like:
+    </p>    <pre>
+
+    |A GenHTML demo
+    |
+    |  File one
+    |  File two
+    |
+    | Files one and two are not very interesting,
+    | hey - it's just an example!
+    </pre>    <p>
+This tells GenHTML to include the files:
+    </p>    <pre>
+
+    txt/File-one
+    txt/File-two
+    </pre>    <p>
+The spaces are replaced with - characters to prevent issues with filenames and spaces.
+    </p>    <p>
+So now GenHTML will attempt to load the additional files, what does this mean in terms of the output?
+    </p>    <h2><a name="_Output_files">Output files</a></h2>    <p>
+By default, GenHTML will create a single-page HTML document, even if there are multiple input files.
+    </p>    <p>
+It will compile them all into a single document and create links to the various sections for navigation.
+    </p>    <p>
+If we specify the -multi-page switch, then GenHTML will create an individual HTML document for each input file, and they will be linked externally via a common index.html, as well as linked internally using anchors.
+    </p>    <p>
+To create a multi-page document:
+    </p>    <pre>
+
+    php GenHTML --i txt/index --o doc -multi-page
+    </pre>    <p>
+Remember you can also use the short form -m switch, as well as the -silent or -s switches to suppress output to the terminal during the build.
+    </p>
+  </div>  <div class="section-bottom">
+   <div class="section-left">
+<a href="Running-GenHTML.html">Running GenHTML</a>
+   </div>
+   <div class="section-center">
+<a href="#top">Top</a>
+   </div>
+   <div class="section-right">
+<a href="Templates.html">Templates</a>
+   </div>
+  </div>  <div class="page-footer">
+    &copy; 2019
+  </div> </div>
+ </body>
+</html>

@@ -1,0 +1,271 @@
+Templates
+
+ There are two main templates - HML and CSS.
+
+ The CSS template isn't really a template, it's
+ just a .css file - HTML templates can be either
+ a single file or multiple files.
+
+ If you are curious - GenHTML will use default
+ files if none are specified at the command line,
+ these can be found in:
+
+   GenHTML/Templates/CSS
+   GenHTML/Templates/HTML
+
+ If you want to work with customised templates,
+ you can make copies of the defaults and edit
+ them, then use the --html-path and --css-path
+ options at the command line to point GenHTML
+ at those files.
+
+
+ CSS Template file
+
+  When GenHTML builds the HTML it will create
+  the output path directory if it does not
+  exist. Within the output path directory it
+  will also create a css directory if it does
+  not exist.
+
+  Here it will copy the .css file to be included
+  by the HTML documents.
+
+  This file should be named main.css, we can
+  change this if necessary, but by default
+  GenHTML will create HTML documents that
+  expect to find main.css in the css/ directory.
+
+  For more information on the elements and classes
+  the .css file should define, see the default
+  GenHTML/Templates/CSS/main.css file, which is
+  fairly well commented.
+
+
+ HTML Templates
+
+  GenHTML uses a bunch of HTML templates to create
+  the HTML elements and build the documents.
+
+  If you look in GenHTML/Templates/HTML/ you will
+  see the following files:
+
+    index
+    page-close
+    page-footer
+    page-header
+    page-open
+    page-section
+    section-bottom
+    section-codeblock
+    section-header
+    section-paragraph
+    section-subheader
+    section-top
+
+  The index file contains all of the templates in a
+  single file, the other files contain the individual
+  templates.
+
+  GenHTML allows you to specify either a file that
+  contains all of the HTML templates, or specify a
+  location where the individual template files are
+  found. By default, the --html-path option is set
+  to:
+
+    GenHTML/Templates/HTML/
+
+  Which means GenHTML will load the individual
+  HTML template files, not the index containing
+  all of the templates.
+
+  If you look in index you will see, for example:
+    
+    PAGE_HEADER
+
+  Followed by some HTML.
+
+  PAGE_HEADER is the template directive name, if
+  you look in:
+
+    GenHTML/Templates/HTML/page-header
+
+  You will see it's the exact same template, if we
+  cs into the GenHTML directory and do:
+
+    php GenHTML --css-path Templates/HTML/index
+
+  Then we force GenHTML to load the templates from
+  the index instead of individual files.
+
+  The templates contain {{identifiers}} that are
+  placeholders for specific types of data extracted
+  from the input files.
+
+
+  Page open
+
+   Index directive PAGE_OPEN or file page-open.
+
+   This is the main HTML header of the page, it
+   should include the HTML opening tags and the
+   head section - it is also where we can change
+   the name of the .css file to something other
+   than main.css if we want to.
+
+   Directives expanded here are PAGE_LANGUAGE
+   which will expand to the --html-language
+   option (en by default) and PAGE_TITLE which
+   will expand to the name of the current page
+   being viewed.
+
+
+  Page header
+
+   Directive PAGE_HEADER or file page-header.
+
+   This goes at the top of every individual
+   HTML file created.
+
+   Only one directive is expanded here, the
+   PAGE_TITLE - note that the PAGE_TITLE is
+   the content of the main header of the
+   main index/input file.
+
+
+  Page section
+
+   Directive PAGE_SECTION or file page-section.
+
+   This is a container or wrapper element used
+   for each individual page, it is essentially
+   the parent section.
+
+   Expands the PAGE_SECTION directive - this is
+   the internally compiled page - there is no
+   real need or reason to alter this template.
+
+ 
+  Page footer
+
+   Directive PAGE_FOOTER or file page-footer.
+
+   Nothing is expanded in this section,
+   it is intended for general purpose use, 
+   copyright info, maybe contact info.
+
+   You can alter the template to include whatever
+   information you require.
+
+   Also note how the template elements reference
+   some id's and classes from the .css file.
+
+   Between the .css file and the templates, changing
+   the layout and look of the output HTML files is
+   fairly trivial.
+
+
+  Page close
+
+   Directive PAGE_CLOSE or file page-close.
+
+   Nothing is expanded in this template.
+
+   This is used to close each ndividual HTML page,
+   it's just the standard body and html closing
+   tags.
+
+
+  Section top
+
+   Directive SECTION_TOP or file section-top.
+
+   When GenHTML creates a multi-page document, it
+   will add quick navigation links to the top of
+   each document linking to the next and previous
+   documents.
+
+   The following directives are expanded, linking
+   to other pages:
+
+     PAGE_PREV      Previous page (if one exists)
+     PAGE_INDEX     Main index page
+     PAGE_NEXT      Next page (if one exists)
+
+   GenHTML will only show the links that are
+   relevant, for example it won't generate a link
+   to the main index page in the main index page.
+
+   Again, there's little to change or alter, here.
+   Customisation should be done in the .css file.
+
+
+  Section header
+
+   Directive SECTION_HEADER or file section-header.
+
+   This is the element used to wrap the main header
+   of each page, it's basically a h1 tag with an
+   anchor tag embedded for linking the pages and
+   sections.
+
+   Expands two directives, SECTION_NAME and
+   SECTION_HEADER.
+
+   SECTION_NAME expands to an internal name that
+   is created as an anchor point for linking.
+
+   SECTION_HEADER expands to the actual header
+   extraced from the input document.
+
+
+  Section subheader
+
+   Directive SECTION_SUBHEADER or file
+   section-subheader.
+
+   Similar to the SECTION_HEADER, it expands the
+   exact same directives to generate the subheader
+   and anchor for linking.
+
+
+  Section paragraph
+
+   Directive SECTION_PARAGRAPH or file
+   section-paragraph.
+
+   Expands the SECTION_PARAGRAPH directive which
+   translates to the individual paragraphs read
+   from the input files.
+
+   Again, customisation should be done via the
+   .css file.
+
+
+  Section codeblock
+
+   Directive SECTION_CODEBLOCK or file
+   section-codeblock.
+
+   Expands the SECTION_CODEBLOCK directive which
+   translates t the individual pre code blocks
+   read from the input files.
+
+
+  Section bottom
+
+   Directive SECTION_BOTTOM or file section-bottom.
+
+   Similar to the SECTION_TOP template, this will
+   show links at the foot of the page in a multi-
+   multi-page document.
+
+   Expands 3 directives:
+
+     PAGE_PREV      Previous page (if one exists)
+     PAGE_TOP       Top of the current page
+     PAGE_NEXT      Next page (if one exists)
+
+   Again, GenHTML will be sure not to include links
+   to pages that do not exist or the current page.
+

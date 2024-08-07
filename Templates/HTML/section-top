@@ -1,0 +1,11 @@
+  <div class="section-top">
+   <div class="section-left">
+{{PAGE_PREV}}
+   </div>
+   <div class="section-center">
+{{PAGE_INDEX}}
+   </div>
+   <div class="section-right">
+{{PAGE_NEXT}}
+   </div>
+  </div>

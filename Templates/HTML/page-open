@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html lang="{{PAGE_LANGUAGE}}">
+ <head>
+  <title>{{PAGE_TITLE}}</title>
+  <link rel="Stylesheet" type="text/css" href="css/main.css">
+ </head>
+ <body>
+ <div id="page-wrapper">

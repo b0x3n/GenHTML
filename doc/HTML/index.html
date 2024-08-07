@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>GenHTML - Index</title>
+  <link rel="Stylesheet" type="text/css" href="css/main.css">
+ </head>
+ <body>
+ <div id="page-wrapper">  <div class="page-header">
+GenHTML
+  </div>  <div class="section-top">
+   <div class="section-left">
+&nbsp;
+   </div>
+   <div class="section-center">
+&nbsp;
+   </div>
+   <div class="section-right">
+<a href="Running-GenHTML.html">Running GenHTML</a>
+   </div>
+  </div>   <ol>
+   <li><a href="#">GenHTML</a></li>    <li class="empty-li">
+    <ol>
+    <li><a href="index.html#_Purpose">Purpose</a></li>
+    <li><a href="index.html#_How_it_works">How it works</a></li>
+    <li><a href="index.html#_Additional">Additional</a></li>
+    </ol>
+   </li>
+   <li><a href="Running-GenHTML.html">Running GenHTML</a></li>
+    <li class="empty-li">
+    <ol>
+    <li><a href="Running-GenHTML.html#_Command_line_options">Command line options</a></li>
+    <li><a href="Running-GenHTML.html#_Options">Options</a></li>
+     <li class="empty-li">
+     <ol>
+     <li><a href="Running-GenHTML.html#__--Index-path">--Index-path</a></li>
+     <li><a href="Running-GenHTML.html#__--output-path">--output-path</a></li>
+     <li><a href="Running-GenHTML.html#__--html-path">--html-path</a></li>
+     <li><a href="Running-GenHTML.html#__--css-path">--css-path</a></li>
+     <li><a href="Running-GenHTML.html#__--html-language">--html-language</a></li>
+     <li><a href="Running-GenHTML.html#__--link-depth">--link-depth</a></li>
+     <li><a href="Running-GenHTML.html#__--help">--help</a></li>
+     <li><a href="Running-GenHTML.html#__-multi-page">-multi-page</a></li>
+     <li><a href="Running-GenHTML.html#__-silent">-silent</a></li>
+     </ol>
+    </li>
+   </ol>
+   </li>
+   <li><a href="Input-file-structure.html">Input file structure</a></li>
+    <li class="empty-li">
+    <ol>
+    <li><a href="Input-file-structure.html#_Headers">Headers</a></li>
+    <li><a href="Input-file-structure.html#_Subheaders">Subheaders</a></li>
+    <li><a href="Input-file-structure.html#_Paragraphs">Paragraphs</a></li>
+    <li><a href="Input-file-structure.html#_Pre_blocks">Pre blocks</a></li>
+    <li><a href="Input-file-structure.html#_File_index">File index</a></li>
+    <li><a href="Input-file-structure.html#_Output_files">Output files</a></li>
+    </ol>
+   </li>
+   <li><a href="Templates.html">Templates</a></li>
+    <li class="empty-li">
+    <ol>
+    <li><a href="Templates.html#_CSS_Template_file">CSS Template file</a></li>
+    <li><a href="Templates.html#_HTML_Templates">HTML Templates</a></li>
+     <li class="empty-li">
+     <ol>
+     <li><a href="Templates.html#__Page_open">Page open</a></li>
+     <li><a href="Templates.html#__Page_header">Page header</a></li>
+     <li><a href="Templates.html#__Page_section">Page section</a></li>
+     <li><a href="Templates.html#__Page_footer">Page footer</a></li>
+     <li><a href="Templates.html#__Page_close">Page close</a></li>
+     <li><a href="Templates.html#__Section_top">Section top</a></li>
+     <li><a href="Templates.html#__Section_header">Section header</a></li>
+     <li><a href="Templates.html#__Section_subheader">Section subheader</a></li>
+     <li><a href="Templates.html#__Section_paragraph">Section paragraph</a></li>
+     <li><a href="Templates.html#__Section_codeblock">Section codeblock</a></li>
+     <li><a href="Templates.html#__Section_bottom">Section bottom</a></li>
+     </ol>
+    </li>
+   </ol>
+   </li>
+   <li><a href="Example.html">Example</a></li>
+    <li class="empty-li">
+    <ol>
+    <li><a href="Example.html#_Try_it">Try it</a></li>
+   </ol>
+   </li>
+   </ol>
+  <div class="page-section">
+   <h1><a name="GenHTML">GenHTML</a></h1>
+    <p>
+GenHTML is an application that allows you to quickly generate HTML documentation from raw text files.
+    </p>    <h2><a name="_Purpose">Purpose</a></h2>    <p>
+Writing documentation can be a tedious and slow process, particularly if you're using some kind of markup language like HTML.
+    </p>    <p>
+The idea is that we can write our documents as raw text files with little to no formatting.
+    </p>    <p>
+We write regular, readable and presentable raw text documentation that we ship with our software and then run that through GenHTML to translate it to HTML automatically.
+    </p>    <p>
+This means we write documentation once, and once only - with no editing of the raw text, no markup or markdown.
+    </p>    <h2><a name="_How_it_works">How it works</a></h2>    <p>
+Very simply, GenHTML uses indentation to determine what is what in the input files.
+    </p>    <p>
+Documentation doesn't require anything too fancy, a few simply HTML elements are enough.
+    </p>    <p>
+If you want an example - see:
+    </p>    <pre>
+
+    GenHTML/doc/txt/
+    </pre>    <p>
+And:
+    </p>    <pre>
+
+    GenHTML/doc/HTML/
+    </pre>    <p>
+The text documents in txt/ were used to build the documents in the HTML/ directory. You can see from the layout of the text documents that they're perfectly readable as they are, with no additional formatting, just indentation.
+    </p>    <p>
+You could, if you wanted to - run those text documents through GenHTML and re-build the HTML documentation:
+    </p>    <pre>
+
+    php GenHTML --i GenHTML/txt/index --o doc -m
+    </pre>    <p>
+The above command will build the raw text files in GenHTML/txt/index into a set of HTML documents in the directory named "doc".
+    </p>    <p>
+If you want a list of available options:
+    </p>    <pre>
+
+    php GenHTML --help
+    </pre>    <p>
+Or help with a particular option:
+    </p>    <pre>
+
+    php GenHTML --help option_name
+    </pre>    <p>
+For example:
+    </p>    <pre>
+
+    php GenHTML --help --input-path
+    </pre>    <p>
+To get help for the --input-path option.
+    </p>    <h2><a name="_Additional">Additional</a></h2>    <p>
+GenHTML was written in php for one reason, personal use - to save me time.
+    </p>    <p>
+It was written in php and this is version 1, thus, it's rather...hacky!
+    </p>    <p>
+I may re-factor and release another iteration or go on to do version 2 in c - but for now it is fairly limited and I have some ideas for extending and improving the application in the future.
+    </p>    <p>
+If you want to contribute, make suggestions, criticise or report issues you can email me at heathenjessie@gmail.com.
+    </p>
+  </div>  <div class="section-bottom">
+   <div class="section-left">
+&nbsp;
+   </div>
+   <div class="section-center">
+<a href="#top">Top</a>
+   </div>
+   <div class="section-right">
+<a href="Running-GenHTML.html">Running GenHTML</a>
+   </div>
+  </div>  <div class="page-footer">
+    &copy; 2019
+  </div> </div>
+ </body>
+</html>

@@ -1,0 +1,322 @@
+/*---------------------------------------------------------
+ |
+ |	GenHTML/Templates/CSS/main.css
+ |
+ */
+
+	*,
+	body
+	{
+		margin: 0;
+		padding: 0;
+	}
+
+
+	/*-----------------------------------------------------
+	 | 
+	 | Main page wrapper
+	 |
+	 | Customise as required - this is part of the 
+	 | PAGE_OPEN template.
+	 |
+	 */
+	#page-wrapper {
+		position: relative;
+		float: left;
+
+		margin: 0%;
+		padding: 0%;
+
+		width: 100%;
+		height: auto;
+
+		overflow-x: hidden;
+	}
+
+
+	/*-----------------------------------------------------
+	 |
+	 | Main header for each page.
+	 |
+	 | This is where the page title is shown on each HTML
+	 | document.
+	 |
+	 | You can customise this as you like.
+	 |
+	 */
+	.page-header {
+		position: relative;
+		float: left;
+
+		padding-left: 2.5vw;
+
+		width: 100%;
+		height: 80px;
+
+		line-height: 80px;
+
+		font-family: System;
+		font-size: 38px;
+		font-weight: bold;
+
+		color: #FFF;
+		background: #1E90BF;
+	}
+
+
+	/*-----------------------------------------------------
+	 |
+	 | Page footer.
+	 |
+	 | This is the footer section that goes at the
+	 | bottom of each HTML page.
+	 |
+	 */
+	.page-footer {
+		position: relative;
+		float: left;
+
+		width: 100%;
+		height: 48px;
+
+		padding: 0% 2.5vw;
+
+		font-family: System;
+		font-size: 20px;
+		font-weight: bold;
+
+		line-height: 48px;
+
+		color: #FFF;
+		background: #1E90BF;
+	}
+
+
+	/*-----------------------------------------------------
+	 |
+	 | Customise the list elements - these are used
+	 | to build the navigation menu's at the top of
+	 | each of the HTML documents.
+	 |
+	 */
+	ol {
+		padding: 0;
+		margin-top: 0;
+		margin-left: 5%;
+		margin-bottom: 2.5%;
+		list-style-type: none;
+	}
+
+		li {
+			margin: 0;
+			padding: 0;
+		}
+
+		.empty-li {
+			list-style-type: none;
+		}
+
+		ol:last-child {
+			margin-left: 5%;
+			margin-bottom: 2.5%;
+		}
+
+
+	/*-----------------------------------------------------
+	 |
+	 | Section container for each page - use this to
+	 | set margins.
+	 |
+	 */
+	.page-section {
+		position: relative;
+		float: left;
+
+		margin: 0% 2.5%;
+
+		width: 95%;
+		height: auto;
+	}
+
+
+	/*-----------------------------------------------------
+	 |
+	 | SECTION_TOP and SECTION_BOTTOM tmeplates, these
+	 | are used to create links at the tom and bottom of
+	 | each HTML document.
+	 |
+	 */
+	.section-top {
+		position: relative;
+		float: left;
+
+		padding: 2.5vw;
+
+		width: 95%;
+		height: auto;
+	}
+
+	.section-bottom {
+		position: relative;
+		float: left;
+
+		padding: 2.5vw;
+
+		width: 95%;
+		height: auto;
+
+		margin-top: 2.5%;
+	}
+
+
+		.section-left {
+			position: relative;
+			float: left;
+
+			width: 33.33%;
+			height: auto;
+
+			text-align: left;
+		}
+
+		.section-center {
+			position: relative;
+			float: left;
+
+			width: 33.33%;
+			height: auto;
+
+			text-align: center;
+		}
+
+		.section-right {
+			position: relative;
+			float: left;
+
+			width: 33.33%;
+			height: auto;
+
+			text-align: right;
+		}
+
+
+	/*-----------------------------------------------------
+	 |
+	 | Customise hyperlinks.
+	 |
+	 */
+	a:link {
+		color: #1E90BF;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: #10608F;
+		text-decoration: underline;
+	}
+
+	a:visited {
+		color: #10608F;
+		text-decoration: none;
+	}
+
+	a {
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+
+	/*-----------------------------------------------------
+	 |
+	 | Customise headers.
+	 |
+	 */
+	h1 a {
+		position: relative;
+		width: 100%;
+		font-size: 36px !important;
+	}
+
+	h2 a {
+		position: relative;
+		width: 100%;
+		font-size: 28px !important;
+	}
+
+
+	h1 a:link {
+		text-decoration: none;
+		color: #000;
+	}
+	h1 a:hover {
+		text-decoration: none;
+		color: #000;
+	}
+	h1 a:visited {
+		text-decoration: none;
+		color: #000;
+	}
+
+	h2 a:link {
+		text-decoration: none;
+		color: #000;
+	}
+	h2 a:hover {
+		text-decoration: none;
+		color: #000;
+	}
+	h2 a:visited {
+		text-decoration: none;
+		color: #000;
+	}
+
+	h1 {
+		margin: 2.5vw 0% 2vw 0%;;
+	}
+
+	h2 {
+		margin: 2.5vw 0% 2vw 0%;;
+	}
+
+
+	/*-----------------------------------------------------
+	 |
+	 | Customise SECTION_CODEBLOCK template.
+	 |
+	 */
+	pre {
+		font-size: 16px;
+		position: relative;
+		width: 100%;
+		margin: 1vw;
+		background: #FAFAFA;
+	}
+
+
+	/*-----------------------------------------------------
+	 |
+	 | Customise the SECTION_PARAGRAPH template.
+	 |
+	 */
+	p {
+		position: relative;
+		width: 90%;
+		color: #2F2F2F;
+		font-size: 20px;
+		line-height: 22px;
+		padding: 1.5vw 2.5%;
+	}
+
+
+	/*-----------------------------------------------------
+	 |
+	 | Used for padding.
+	 |
+	 */
+	.empty-div {
+		position: relative;
+		float: left;
+
+		width: 100%;
+		height: 48px;
+	}
